@@ -2,8 +2,23 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 /// !!Step1: prepare the data to plot.
-final _data1 = <double, double>{1: 10, 2: 15, 3: 20, 4: 28, 5: 34, 6: 50};
-final _data2 = <double, double>{1: 8, 2: 12, 3: 27, 4: 31, 5: 36, 6: 45};
+// final _data1 = <double, double>{1: 10, 2: 15, 3: 20, 4: 28, 5: 34, 6: 50};
+final _data2 = <double, double>{
+  1: 8,
+  2: 12,
+  3: 27,
+  4: 31,
+  5: 36,
+  6: 45,
+  7: 10,
+  8: 50,
+  9: 30,
+  10: 5,
+  11: 25,
+  12: 35,
+  13: 55,
+  14: 10,
+};
 
 class ChartScreen extends StatefulWidget {
   const ChartScreen({Key? key}) : super(key: key);
@@ -22,9 +37,9 @@ class _ChartScreenState extends State<ChartScreen> {
   @override
   Widget build(BuildContext context) {
     /// !!Step2: convert data into a list of [FlSpot].
-    final spots1 = <FlSpot>[
-      for (final entry in _data1.entries) FlSpot(entry.key, entry.value)
-    ];
+    // final spots1 = <FlSpot>[
+    //   for (final entry in _data1.entries) FlSpot(entry.key, entry.value)
+    // ];
     final spots2 = <FlSpot>[
       for (final entry in _data2.entries) FlSpot(entry.key, entry.value)
     ];
@@ -32,26 +47,29 @@ class _ChartScreenState extends State<ChartScreen> {
     /// !!Step3: prepare LineChartData
     /// !here we can set styles and behavior of the chart.
     final lineChartData = LineChartData(
-      // The data to show.
+      maxX: 30,
+      maxY: 80,
       lineBarsData: [
         // ! Here we can style each data line.
+        // LineChartBarData(
+        //   spots: spots1,
+        //   color: Colors.blue,
+        //   barWidth: 8,
+        //   isCurved: _isCurved,
+        //   dotData: FlDotData(show: _showDot),
+        //   belowBarData:
+        //       BarAreaData(show: _showBelowArea, color: Colors.blue[200]),
+        // ),
         LineChartBarData(
-          spots: spots1,
-          color: Colors.blue,
-          barWidth: 8,
-          isCurved: _isCurved,
-          dotData: FlDotData(show: _showDot),
-          belowBarData:
-              BarAreaData(show: _showBelowArea, color: Colors.blue[200]),
-        ),
-        LineChartBarData(
+          aboveBarData: BarAreaData(color: Colors.green),
+          showingIndicators: [1, 2, 3],
           spots: spots2,
           color: Colors.red,
           barWidth: 4,
-          isCurved: _isCurved,
+          isCurved: true,
           dotData: FlDotData(show: _showDot),
-          belowBarData:
-              BarAreaData(show: _showBelowArea, color: Colors.red[200]),
+          // belowBarData:
+          //     BarAreaData(show: _showBelowArea, color: Colors.red[200]),
         ),
       ],
       // ! Behavior when touching the chart:
@@ -64,7 +82,7 @@ class _ChartScreenState extends State<ChartScreen> {
       ),
       // ! Borders:
       borderData: FlBorderData(
-        show: _showBorder,
+        show: true,
         border: const Border(
           bottom: BorderSide(color: Colors.greenAccent, width: 4),
           left: BorderSide(color: Colors.transparent),
@@ -73,18 +91,14 @@ class _ChartScreenState extends State<ChartScreen> {
         ),
       ),
       // ! Grid behavior:
-      gridData: FlGridData(show: _showGrid),
+      gridData: FlGridData(),
       // ! Title and ticks in the axis
       titlesData: FlTitlesData(
         show: true,
         bottomTitles: AxisTitles(
-          axisNameWidget: const Text('Month'),
+          axisNameWidget: const Text('Day'),
           sideTitles: SideTitles(
             showTitles: true, // this is false by-default.
-            // ! Decides how to show bottom titles,
-            // here we convert double to month names
-            // getTitlesWidget: (double val, _) =>
-            //     Text(DateFormat.MMM().format(DateTime(2020, val.toInt()))),
           ),
         ),
         leftTitles: AxisTitles(
@@ -103,10 +117,19 @@ class _ChartScreenState extends State<ChartScreen> {
     );
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(8),
-        child: LineChart(lineChartData),
+        padding: const EdgeInsets.all(10),
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              width: 1000,
+              child: LineChart(lineChartData),
+            ),
+          ],
+        ),
       ),
-      bottomNavigationBar: _buildControlWidgets(),
+      // bottomNavigationBar: _buildControlWidgets(),
     );
   }
 
