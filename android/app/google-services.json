@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "229188544491",
+    "project_id": "money-counter0",
+    "storage_bucket": "money-counter0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:229188544491:android:381339f5a5053004145bae",
+        "android_client_info": {
+          "package_name": "app.money_counter.money_counter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "229188544491-b5b7e1jncls98ol0rntenf2cgco6nh35.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.money_counter.money_counter",
+            "certificate_hash": "3fe4094910e6d243feed7d79f09e8b4fa61fa4ef"
+          }
+        },
+        {
+          "client_id": "229188544491-iojqjnojthuou3af2g1h5lvsulvt5mgs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWsBXjhcYORo3ov7-Cjghe-4PidkPqOQo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "229188544491-iojqjnojthuou3af2g1h5lvsulvt5mgs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
