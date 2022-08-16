@@ -22,16 +22,14 @@ class CloudFirestore {
 
   registerNewUser() async {
     User? user = FirebaseAuth.instance.currentUser;
-
     DocumentReference<Map<String, dynamic>> documentReference =
         _usersStatisticsDocument.doc(user!.uid);
-
     try {
       if (await isUserRegistered()) {
         debugPrint("this user already registered");
       } else {
         await documentReference.set({
-          "data": {},
+          "data": [],
           "creation_date": DateTime.now().toString().split(" ")[0],
         });
       }
