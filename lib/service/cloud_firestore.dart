@@ -79,4 +79,21 @@ class CloudFirestore {
       return false;
     }
   }
+
+  Future<Map<String, dynamic>> getStatisticsData() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    Map<String, dynamic> userData;
+    Map<String, dynamic> statisticsData;
+    try {
+      DocumentReference<Map<String, dynamic>> userDocumentReference =
+          _usersStatisticsDocument.doc(user!.uid);
+      var userDocumentData = await userDocumentReference.get();
+      userData = userDocumentData.data()!;
+      statisticsData = userData["statistics_data"];
+      return statisticsData;
+    } catch (e) {
+      debugPrint("Error in get user data: $e");
+      return {};
+    }
+  }
 }

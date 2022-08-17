@@ -1,70 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import '../service/authentication.dart';
-import 'add_screen.dart';
-
-final _outCome = <double, double>{
-  1: 8,
-  2: 12,
-  3: 27,
-  4: 31,
-  5: 36,
-  6: 45,
-  7: 10,
-  8: 50,
-  9: 30,
-  10: 5,
-  11: 25,
-  12: 35,
-  13: 55,
-  14: 10,
-  15: 8,
-  16: 12,
-  17: 27,
-  18: 31,
-  19: 36,
-  21: 33,
-  22: 50,
-  23: 30,
-  24: 5,
-  25: 25,
-  26: 35,
-  27: 55,
-  29: 10,
-  30: 42,
-};
-final _inCome = <double, double>{
-  1: 8,
-  2: 50,
-  3: 0,
-  4: 22,
-  5: 0,
-  6: 0,
-  7: 40,
-  8: 60,
-  9: 0,
-  10: 5,
-  11: 0,
-  12: 10,
-  13: 55,
-  14: 20,
-  15: 0,
-  16: 40,
-  17: 10,
-  18: 75,
-  19: 50,
-  21: 0,
-  22: 0,
-  23: 0,
-  24: 5,
-  25: 15,
-  26: 0,
-  27: 0,
-  29: 0,
-  30: 0,
-};
+import '../service/cloud_firestore.dart';
 
 class ChartScreen extends StatefulWidget {
   const ChartScreen({Key? key}) : super(key: key);
@@ -74,11 +12,38 @@ class ChartScreen extends StatefulWidget {
 }
 
 class _ChartScreenState extends State<ChartScreen> {
+  final CloudFirestore _cloudFirestore = CloudFirestore();
+  final _outCome = <double, double>{};
+  final _inCome = <double, double>{};
+  Map<String, dynamic> statisticsData = {};
   bool _showIncome = true;
   bool _showOutcome = true;
 
   bool _showBelowArea = false;
   bool _showDot = true;
+  Future getStatisticsData() async {
+    List currantDateAsList = DateTime.now().toString().split(" ")[0].split("-");
+    int todayNum = int.parse(currantDateAsList[2]);
+    statisticsData = await _cloudFirestore.getStatisticsData();
+    for (int i = 1; i <= todayNum; i++) {
+      Map<String, dynamic> data = statisticsData[currantDateAsList[0] +
+              "-" +
+              currantDateAsList[1] +
+              currantDateAsList[2]] ??
+          {};
+      double key = i.toDouble();
+      // print(data);
+      // if (data.isNotEmpty) {
+      _outCome[1] = data["outcome"];
+      _inCome[1] = data["income"];
+      // } else {
+      //   _outCome[key] = 0;
+      //   _inCome[key] = 0;
+      // }
+    }
+
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,8 +55,7 @@ class _ChartScreenState extends State<ChartScreen> {
     ];
 
     final lineChartData = LineChartData(
-      maxX: 30,
-      maxY: 80,
+      maxX: 31,
       lineBarsData: [
         LineChartBarData(
           spots: spots1,
@@ -174,7 +138,8 @@ class _ChartScreenState extends State<ChartScreen> {
               bottomNavigationBar: _buildControlWidgets(),
               floatingActionButton: FloatingActionButton(
                 onPressed: () {
-                  Get.to(() => const AddScreen());
+                  // Get.to(() => const AddScreen());
+                  getStatisticsData();
                 },
               ),
             ),
