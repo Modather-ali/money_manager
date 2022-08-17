@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../service/authentication.dart';
+import 'add_screen.dart';
 
 final _outCome = <double, double>{
   1: 8,
@@ -151,22 +155,29 @@ class _ChartScreenState extends State<ChartScreen> {
       ),
     );
     return SafeArea(
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(10),
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height,
-                width: 1000,
-                child: LineChart(lineChartData),
+      child: FirebaseAuth.instance.currentUser == null
+          ? _registrationUI()
+          : Scaffold(
+              body: Padding(
+                padding: const EdgeInsets.all(10),
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height,
+                      width: 1000,
+                      child: LineChart(lineChartData),
+                    ),
+                  ],
+                ),
               ),
-            ],
-          ),
-        ),
-        bottomNavigationBar: _buildControlWidgets(),
-      ),
+              bottomNavigationBar: _buildControlWidgets(),
+              floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                  Get.to(() => const AddScreen());
+                },
+              ),
+            ),
     );
   }
 
@@ -217,6 +228,45 @@ class _ChartScreenState extends State<ChartScreen> {
         Switch(value: switchValue, onChanged: onChanged),
         const SizedBox(width: 10),
       ],
+    );
+  }
+
+  Widget _registrationUI() {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Center(
+        child: InkWell(
+          onTap: () async {
+            await Authentication().signInWithGoogle();
+            // await Authentication().logOut();
+            setState(() {});
+          },
+          child: Container(
+            width: 150,
+            height: 50,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.shade300,
+                  offset: const Offset(4, 4),
+                  spreadRadius: 1,
+                  blurRadius: 15,
+                ),
+                BoxShadow(
+                  color: Colors.grey.shade200,
+                  offset: const Offset(-4, -4),
+                  spreadRadius: 1,
+                  blurRadius: 15,
+                ),
+              ],
+              image: const DecorationImage(
+                image: AssetImage("assets/images/google_icon.png"),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

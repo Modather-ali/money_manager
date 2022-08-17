@@ -4,9 +4,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import 'cloud_firestore.dart';
 
-
 class Authentication {
-  CloudFirestore _cloudFirestore = CloudFirestore();
+  final CloudFirestore _cloudFirestore = CloudFirestore();
 
   Future<bool> signInWithGoogle() async {
     GoogleSignIn googleSignIn = GoogleSignIn();
