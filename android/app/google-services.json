@@ -7,6 +7,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:229188544491:android:d7f8e650ef70609a145bae",
+        "android_client_info": {
+          "package_name": "app.modather.money_manager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "229188544491-u3k709lpp6ism30glnf89j3qmrfk0crk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.modather.money_manager",
+            "certificate_hash": "278d881d7ac6690c49ef2cd71e158075fec3174b"
+          }
+        },
+        {
+          "client_id": "229188544491-iojqjnojthuou3af2g1h5lvsulvt5mgs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWsBXjhcYORo3ov7-Cjghe-4PidkPqOQo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "229188544491-iojqjnojthuou3af2g1h5lvsulvt5mgs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:229188544491:android:381339f5a5053004145bae",
         "android_client_info": {
           "package_name": "app.money_counter.money_counter"

@@ -1,4 +1,4 @@
-package app.money_counter.money_counter
+package app.modather.money_manager
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+
 import '../service/authentication.dart';
 import '../service/cloud_firestore.dart';
 
@@ -31,7 +32,7 @@ class _ChartScreenState extends State<ChartScreen> {
               currantDateAsList[1] +
               currantDateAsList[2]] ??
           {};
-      double key = i.toDouble();
+      // double key = i.toDouble();
       // print(data);
       // if (data.isNotEmpty) {
       _outCome[1] = data["outcome"];
@@ -96,12 +97,12 @@ class _ChartScreenState extends State<ChartScreen> {
         ),
       ),
       // ! Grid behavior:
-      gridData: FlGridData(),
+      gridData: const FlGridData(),
       // ! Title and ticks in the axis
       titlesData: FlTitlesData(
         show: true,
-        bottomTitles: AxisTitles(
-          axisNameWidget: const Text('Day'),
+        bottomTitles: const AxisTitles(
+          axisNameWidget: Text('Day'),
           sideTitles: SideTitles(
             showTitles: true, // this is false by-default.
           ),

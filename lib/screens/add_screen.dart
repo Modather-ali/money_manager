@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:money_counter/screens/chart_screen.dart';
 
+import '/screens/chart_screen.dart';
 import '../service/cloud_firestore.dart';
 
 class AddScreen extends StatefulWidget {
