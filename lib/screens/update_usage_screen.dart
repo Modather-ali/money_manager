@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:money_manager/models/money_updates.dart';
 
 import '/screens/chart_screen.dart';
 import '../service/cloud_firestore.dart';
 
 class UpdateUsageScreen extends StatefulWidget {
-  const UpdateUsageScreen({super.key});
+  final MoneyUpdates moneyUpdates;
+  const UpdateUsageScreen({super.key, required this.moneyUpdates});
 
   @override
   State<UpdateUsageScreen> createState() => _UpdateUsageScreenState();
@@ -88,27 +90,7 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
               SizedBox(
                 width: 150,
                 child: ElevatedButton(
-                  onPressed: () async {
-                    bool result;
-                    if (_formKey.currentState!.validate()) {
-                      result = await CloudFirestore().addStatisticsData(
-                        date: _date.text,
-                        income: num.parse(_income.text),
-                        outcome: num.parse(_outcome.text),
-                      );
-                      if (result) {
-                        Get.offAll(() => const ChartScreen());
-                      } else {
-                        // Get.showSnackbar(
-                        //   const GetSnackBar(
-                        //     title: "Error",
-                        //     message: "",
-                        //     backgroundColor: Colors.red,
-                        //   ),
-                        // );
-                      }
-                    }
-                  },
+                  onPressed: _onSave,
                   child: const Text("Save"),
                 ),
               )
@@ -117,6 +99,29 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
         ),
       ),
     );
+  }
+
+  void _onSave() async {
+    bool result;
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+    result = await CloudFirestore().addStatisticsData(
+      date: _date.text,
+      income: num.parse(_income.text),
+      outcome: num.parse(_outcome.text),
+    );
+    if (result) {
+      Get.offAll(() => const ChartScreen());
+    } else {
+      // Get.showSnackbar(
+      //   const GetSnackBar(
+      //     title: "Error",
+      //     message: "",
+      //     backgroundColor: Colors.red,
+      //   ),
+      // );
+    }
   }
 
   Widget _moneyTextFormField({
