@@ -33,14 +33,14 @@ class _ChartScreenState extends State<ChartScreen> {
               currantDateAsList[2]] ??
           {};
       // double key = i.toDouble();
-      // print(data);
-      // if (data.isNotEmpty) {
-      _outCome[1] = data["outcome"];
-      _inCome[1] = data["income"];
-      // } else {
-      //   _outCome[key] = 0;
-      //   _inCome[key] = 0;
-      // }
+      print(data);
+      if (data.isNotEmpty) {
+        _outCome[1] = data["outcome"];
+        _inCome[1] = data["income"];
+      } else {
+        _outCome[1] = 0;
+        _inCome[1] = 0;
+      }
     }
 
     setState(() {});
