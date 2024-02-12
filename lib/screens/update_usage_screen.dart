@@ -4,14 +4,14 @@ import 'package:get/get.dart';
 import '/screens/chart_screen.dart';
 import '../service/cloud_firestore.dart';
 
-class AddScreen extends StatefulWidget {
-  const AddScreen({super.key});
+class UpdateUsageScreen extends StatefulWidget {
+  const UpdateUsageScreen({super.key});
 
   @override
-  State<AddScreen> createState() => _AddScreenState();
+  State<UpdateUsageScreen> createState() => _UpdateUsageScreenState();
 }
 
-class _AddScreenState extends State<AddScreen> {
+class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
   final TextEditingController _income = TextEditingController();
   final TextEditingController _outcome = TextEditingController();
   final TextEditingController _date = TextEditingController();
@@ -37,10 +37,10 @@ class _AddScreenState extends State<AddScreen> {
                 height: 200,
                 width: double.infinity,
               ),
-              _moneyTextFormField(
-                color: Colors.green,
-                controller: _income,
-              ),
+              // _moneyTextFormField(
+              //   color: Colors.green,
+              //   controller: _income,
+              // ),
               const SizedBox(
                 height: 20,
               ),
@@ -127,12 +127,12 @@ class _AddScreenState extends State<AddScreen> {
       width: 200,
       child: TextFormField(
         controller: controller,
-        decoration: InputDecoration(
-          focusedBorder: const OutlineInputBorder(),
-          prefixIcon: Icon(
-            Icons.attach_money,
-            color: color,
-          ),
+        decoration: const InputDecoration(
+          focusedBorder: OutlineInputBorder(),
+          // prefixIcon: Icon(
+          //   Icons.attach_money,
+          //   color: color,
+          // ),
         ),
         // inputFormatters: const <TextInputFormatter>[
         // FilteringTextInputFormatter.digitsOnly

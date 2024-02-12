@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:money_manager/screens/tracker_chart.dart';
+
+import 'screens/used_money_chart_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,22 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Money Manager',
-      theme: ThemeData(),
-      home: const UsedMoneyChartScreen(),
-    );
-  }
-}
-
-class UsedMoneyChartScreen extends StatelessWidget {
-  const UsedMoneyChartScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: TrackerChart(
-        scoreOfMonth: [100, 150, 90, 100, 160, 500, 25, 50, 400],
-        target: 0,
+      theme: ThemeData(
+        useMaterial3: true,
       ),
+      home: const UsedMoneyChartScreen(),
     );
   }
 }
