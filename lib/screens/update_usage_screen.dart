@@ -109,7 +109,7 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
                       }
                     }
                   },
-                  child: const Text("Add"),
+                  child: const Text("Save"),
                 ),
               )
             ],
