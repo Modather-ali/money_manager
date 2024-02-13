@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:money_manager/bloc/money_updates_bloc.dart';
 import 'package:money_manager/models/money_updates.dart';
 
-import '/screens/chart_screen.dart';
-import '../service/cloud_firestore.dart';
+import 'used_money_chart_screen.dart';
+import 'widgets/money_text_form_field.dart';
 
 class UpdateUsageScreen extends StatefulWidget {
   final MoneyUpdates moneyUpdates;
@@ -14,15 +16,14 @@ class UpdateUsageScreen extends StatefulWidget {
 }
 
 class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
-  final TextEditingController _income = TextEditingController();
-  final TextEditingController _outcome = TextEditingController();
+  final TextEditingController _moneyUsage = TextEditingController();
   final TextEditingController _date = TextEditingController();
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  DateTime _updatedDate = DateTime.now();
   @override
   void initState() {
     _date.text = DateTime.now().toString().split(" ")[0];
+
     super.initState();
   }
 
@@ -39,17 +40,10 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
                 height: 200,
                 width: double.infinity,
               ),
-              // _moneyTextFormField(
-              //   color: Colors.green,
-              //   controller: _income,
-              // ),
               const SizedBox(
                 height: 20,
               ),
-              _moneyTextFormField(
-                controller: _outcome,
-                color: Colors.red,
-              ),
+              MoneyTextFormField(controller: _moneyUsage),
               const SizedBox(
                 height: 20,
               ),
@@ -61,11 +55,11 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
                     lastDate: DateTime(2999),
                     initialDate: DateTime.now(),
                     selectableDayPredicate: (day) {
-                      print(day);
                       return true;
                     },
                   ).then((date) {
                     if (date != null) {
+                      _updatedDate = date;
                       _date.text = date.toString().split(" ")[0];
                     }
                     setState(() {});
@@ -102,57 +96,24 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
   }
 
   void _onSave() async {
-    bool result;
     if (!_formKey.currentState!.validate()) {
       return;
     }
-    result = await CloudFirestore().addStatisticsData(
-      date: _date.text,
-      income: num.parse(_income.text),
-      outcome: num.parse(_outcome.text),
-    );
-    if (result) {
-      Get.offAll(() => const ChartScreen());
-    } else {
-      // Get.showSnackbar(
-      //   const GetSnackBar(
-      //     title: "Error",
-      //     message: "",
-      //     backgroundColor: Colors.red,
-      //   ),
-      // );
-    }
-  }
 
-  Widget _moneyTextFormField({
-    TextEditingController? controller,
-    Color? color,
-  }) {
-    return SizedBox(
-      width: 200,
-      child: TextFormField(
-        controller: controller,
-        decoration: const InputDecoration(
-          focusedBorder: OutlineInputBorder(),
-          // prefixIcon: Icon(
-          //   Icons.attach_money,
-          //   color: color,
-          // ),
-        ),
-        // inputFormatters: const <TextInputFormatter>[
-        // FilteringTextInputFormatter.digitsOnly
-        // ],
-        validator: (text) {
-          final isNumber = num.tryParse(text!);
-          if (text.isEmpty) {
-            return "This value is empty";
-          } else if (isNumber == null) {
-            return '"$text" is not a valid number';
-          }
-          return null;
-        },
-        keyboardType: TextInputType.number,
-      ),
+    String dayId =
+        '${_updatedDate.year}-${_updatedDate.month}-${_updatedDate.day}';
+    Update update = Update(
+      dayId: dayId,
+      date: _updatedDate,
+      usedMoney: int.parse(_moneyUsage.text),
     );
+
+    // widget.moneyUpdates.updates.indexWhere((element) => element.dayId == dayId);
+    widget.moneyUpdates.updates.add(update);
+
+    BlocProvider.of<MoneyBloc>(context)
+        .add(SaveMoneyUpdates(widget.moneyUpdates));
+
+    Get.offAll(() => const UsedMoneyChartScreen());
   }
 }

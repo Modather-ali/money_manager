@@ -6,6 +6,7 @@ sealed class MoneyEvent {}
 
 final class SaveMoneyUpdates extends MoneyEvent {
   final MoneyUpdates moneyUpdates;
+
   SaveMoneyUpdates(this.moneyUpdates);
 }
 
@@ -19,6 +20,7 @@ class MoneyBloc extends Bloc<MoneyEvent, GetMoneyUpdates> {
       : super(GetMoneyUpdates(
             MoneyUpdates(lastUpdate: DateTime.now(), updates: []))) {
     on<SaveMoneyUpdates>((event, emit) {
+      // event.moneyUpdates.id = FirebaseAuth.instance.currentUser!.uid;
       FireDatabase.saveItemData(event.moneyUpdates,
           collectionPath: 'money_updates');
       emit(GetMoneyUpdates(event.moneyUpdates));
