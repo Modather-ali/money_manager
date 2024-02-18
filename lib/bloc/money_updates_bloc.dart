@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:money_manager/models/money_updates.dart';
 import 'package:my_tools_bag/firebase/firebase.dart';
@@ -20,7 +21,7 @@ class MoneyBloc extends Bloc<MoneyEvent, GetMoneyUpdates> {
       : super(GetMoneyUpdates(
             MoneyUpdates(lastUpdate: DateTime.now(), updates: []))) {
     on<SaveMoneyUpdates>((event, emit) {
-      // event.moneyUpdates.id = FirebaseAuth.instance.currentUser!.uid;
+      event.moneyUpdates.id = FirebaseAuth.instance.currentUser!.uid;
       FireDatabase.saveItemData(event.moneyUpdates,
           collectionPath: 'money_updates');
       emit(GetMoneyUpdates(event.moneyUpdates));

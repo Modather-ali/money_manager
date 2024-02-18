@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -102,15 +104,21 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
 
     String dayId =
         '${_updatedDate.year}-${_updatedDate.month}-${_updatedDate.day}';
+    int updateIndex = -1;
     Update update = Update(
       dayId: dayId,
       date: _updatedDate,
       usedMoney: int.parse(_moneyUsage.text),
     );
 
-    // widget.moneyUpdates.updates.indexWhere((element) => element.dayId == dayId);
-    widget.moneyUpdates.updates.add(update);
-
+    updateIndex = widget.moneyUpdates.updates
+        .indexWhere((element) => element.dayId == dayId);
+    log('$updateIndex');
+    if (updateIndex > -1) {
+      widget.moneyUpdates.updates[updateIndex] = update;
+    } else {
+      widget.moneyUpdates.updates.add(update);
+    }
     BlocProvider.of<MoneyBloc>(context)
         .add(SaveMoneyUpdates(widget.moneyUpdates));
 
