@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:money_manager/bloc/money_updates_bloc.dart';
-import 'package:money_manager/models/money_updates.dart';
 
+import '../models/money_usage.dart';
 import 'used_money_chart_screen.dart';
 import 'widgets/money_text_form_field.dart';
 
 class UpdateUsageScreen extends StatefulWidget {
-  final MoneyUpdates moneyUpdates;
+  final MoneyUsage moneyUpdates;
   const UpdateUsageScreen({super.key, required this.moneyUpdates});
 
   @override
@@ -105,19 +105,21 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
     String dayId =
         '${_updatedDate.year}-${_updatedDate.month}-${_updatedDate.day}';
     int updateIndex = -1;
-    Update update = Update(
+
+    Expense update = Expense(
       dayId: dayId,
       date: _updatedDate,
       usedMoney: int.parse(_moneyUsage.text),
+      purchase: '',
     );
 
-    updateIndex = widget.moneyUpdates.updates
+    updateIndex = widget.moneyUpdates.expenses
         .indexWhere((element) => element.dayId == dayId);
     log('$updateIndex');
     if (updateIndex > -1) {
-      widget.moneyUpdates.updates[updateIndex] = update;
+      widget.moneyUpdates.expenses[updateIndex] = update;
     } else {
-      widget.moneyUpdates.updates.add(update);
+      widget.moneyUpdates.expenses.add(update);
     }
     BlocProvider.of<MoneyBloc>(context)
         .add(SaveMoneyUpdates(widget.moneyUpdates));

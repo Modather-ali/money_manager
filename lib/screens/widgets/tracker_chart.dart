@@ -1,14 +1,14 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/money_updates.dart';
+import '../../models/money_usage.dart';
 
 class TrackerChart extends StatefulWidget {
-  final List<Update> updates;
+  final List<Expense> expenses;
   final num target;
   const TrackerChart({
     super.key,
-    required this.updates,
+    required this.expenses,
     required this.target,
   });
 
@@ -20,28 +20,28 @@ class _TrackerChartState extends State<TrackerChart> {
   List<FlSpot> spots = [];
   List<FlSpot> targetSpots = [];
   final ScrollController _controller = ScrollController();
-  _getSpots() {
-    for (Update update in widget.updates) {
-      spots.add(
-        FlSpot(
-          update.date.day.toDouble(),
-          update.usedMoney.toDouble(),
-        ),
-      );
-      targetSpots.add(
-        FlSpot(
-          update.date.day.toDouble(),
-          widget.target.toDouble(),
-        ),
-      );
-    }
-  }
+  // _getSpots() {
+  //   for (Update update in widget.updates) {
+  //     spots.add(
+  //       FlSpot(
+  //         update.date.day.toDouble(),
+  //         update.usedMoney.toDouble(),
+  //       ),
+  //     );
+  //     targetSpots.add(
+  //       FlSpot(
+  //         update.date.day.toDouble(),
+  //         widget.target.toDouble(),
+  //       ),
+  //     );
+  //   }
+  // }
 
-  @override
-  void initState() {
-    _getSpots();
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   _getSpots();
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {

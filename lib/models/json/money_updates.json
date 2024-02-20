@@ -1,11 +1,12 @@
 {
     "id": "",
     "last_update": "2023-10-18T12:59:59",
-    "updates": [
+    "expenses": [
         {
             "day_id": "",
-            "date": "2023-10-18T12:59:59",
-            "used_money": 100
+            "purchase": "",
+            "used_money": 100,
+            "date": "2023-10-18T12:59:59"
         }
     ]
 }
