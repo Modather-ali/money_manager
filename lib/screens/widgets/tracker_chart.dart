@@ -1,12 +1,14 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
+import '../../models/money_updates.dart';
+
 class TrackerChart extends StatefulWidget {
-  final List scoreOfMonth;
+  final List<Update> updates;
   final num target;
   const TrackerChart({
     super.key,
-    required this.scoreOfMonth,
+    required this.updates,
     required this.target,
   });
 
@@ -19,23 +21,20 @@ class _TrackerChartState extends State<TrackerChart> {
   List<FlSpot> targetSpots = [];
   final ScrollController _controller = ScrollController();
   _getSpots() {
-    for (int dayNumber = 1;
-        dayNumber <= widget.scoreOfMonth.length;
-        dayNumber++) {
+    for (Update update in widget.updates) {
       spots.add(
         FlSpot(
-          dayNumber.toDouble(),
-          widget.scoreOfMonth[dayNumber - 1].toDouble(),
+          update.date.day.toDouble(),
+          update.usedMoney.toDouble(),
         ),
       );
       targetSpots.add(
         FlSpot(
-          dayNumber.toDouble(),
+          update.date.day.toDouble(),
           widget.target.toDouble(),
         ),
       );
     }
-    setState(() {});
   }
 
   @override

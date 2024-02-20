@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../service/authentication.dart';
-import '../service/cloud_firestore.dart';
+import '../../service/authentication.dart';
+import '../../service/cloud_firestore.dart';
 
 class ChartScreen extends StatefulWidget {
   const ChartScreen({Key? key}) : super(key: key);

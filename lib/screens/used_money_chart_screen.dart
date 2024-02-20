@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -15,6 +17,7 @@ class UsedMoneyChartScreen extends StatelessWidget {
     BlocProvider.of<MoneyBloc>(context).add(
         GetMoneyUpdates(MoneyUpdates(lastUpdate: DateTime.now(), updates: [])));
     return BlocBuilder<MoneyBloc, GetMoneyUpdates>(builder: (context, state) {
+      log(state.moneyUpdates.updates.length.toString());
       return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
@@ -24,8 +27,8 @@ class UsedMoneyChartScreen extends StatelessWidget {
           },
           child: const Icon(Icons.update),
         ),
-        body: const TrackerChart(
-          scoreOfMonth: [], //state.moneyUpdates.updates,
+        body: TrackerChart(
+          updates: state.moneyUpdates.updates,
           target: 100,
         ),
       );
