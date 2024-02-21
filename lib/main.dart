@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:money_manager/sign_in_screen.dart';
+import 'package:my_tools_bag/tools/logger_utils.dart';
 
 import 'bloc/money_updates_bloc.dart';
 import 'screens/used_money_chart_screen.dart';
@@ -17,6 +20,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    User? user = FirebaseAuth.instance.currentUser;
+    Logger.print(user == null);
     return MultiBlocProvider(
       providers: [
         BlocProvider<MoneyBloc>(
@@ -25,10 +30,9 @@ class MyApp extends StatelessWidget {
       ],
       child: GetMaterialApp(
         title: 'Money Manager',
-        theme: ThemeData(
-          useMaterial3: true,
-        ),
-        home: const UsedMoneyChartScreen(),
+        theme: ThemeData(useMaterial3: true),
+        home:
+            user == null ? const SignInScreen() : const UsedMoneyChartScreen(),
       ),
     );
   }

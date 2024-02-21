@@ -19,28 +19,30 @@ class GetMoneyUpdates extends MoneyEvent {
 
 class MoneyBloc extends Bloc<MoneyEvent, GetMoneyUpdates> {
   MoneyBloc()
-      : super(GetMoneyUpdates(
-            MoneyUsage(lastUpdate: DateTime.now(), expenses: [], id: ''))) {
+      : super(GetMoneyUpdates(MoneyUsage(
+            lastUpdate: DateTime.now(),
+            expenses: [],
+            id: FirebaseAuth.instance.currentUser!.uid))) {
     on<SaveMoneyUpdates>((event, emit) {
       event.moneyUsage.id = FirebaseAuth.instance.currentUser!.uid;
       FireDatabase.saveItemData(event.moneyUsage,
-          collectionPath: 'money_updates');
+          collectionPath: 'money_usage');
       emit(GetMoneyUpdates(event.moneyUsage));
     });
 
     on<GetMoneyUpdates>((event, emit) async {
-      MoneyUsage moneyUpdates =
+      MoneyUsage moneyUsage =
           MoneyUsage(lastUpdate: DateTime.now(), expenses: [], id: '');
 
-      List<Map<String, dynamic>> items =
-          await FireDatabase.getListOfItems(collectionPath: 'money_updates');
-
-      List<MoneyUsage> updates =
-          List<MoneyUsage>.from(items.map((e) => MoneyUsage.fromJson(e)));
-      if (updates.isNotEmpty) {
-        moneyUpdates = updates.first;
+      Map<String, dynamic>? item = await FireDatabase.getItemData(
+        collectionPath: 'money_usage',
+        id: FirebaseAuth.instance.currentUser!.uid,
+      );
+      if (item != null) {
+        moneyUsage = MoneyUsage.fromJson(item);
       }
-      emit(GetMoneyUpdates(moneyUpdates));
+      moneyUsage = MoneyUsage.fromJson(item!);
+      emit(GetMoneyUpdates(moneyUsage));
     });
   }
 }

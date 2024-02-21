@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:money_manager/bloc/money_updates_bloc.dart';
-import 'package:money_manager/screens/widgets/tracker_chart.dart';
 
 import '../models/money_usage.dart';
 import 'update_usage_screen.dart';
@@ -26,10 +25,6 @@ class UsedMoneyChartScreen extends StatelessWidget {
                 ));
           },
           child: const Icon(Icons.update),
-        ),
-        body: TrackerChart(
-          expenses: state.moneyUsage.expenses,
-          target: 100,
         ),
       );
     });
