@@ -6,31 +6,31 @@ import '../models/money_usage.dart';
 
 sealed class MoneyEvent {}
 
-final class SaveMoneyUpdates extends MoneyEvent {
+final class SaveMoneyUsage extends MoneyEvent {
   final MoneyUsage moneyUsage;
 
-  SaveMoneyUpdates(this.moneyUsage);
+  SaveMoneyUsage(this.moneyUsage);
 }
 
-class GetMoneyUpdates extends MoneyEvent {
+class GetMoneyUsage extends MoneyEvent {
   final MoneyUsage moneyUsage;
-  GetMoneyUpdates(this.moneyUsage);
+  GetMoneyUsage(this.moneyUsage);
 }
 
-class MoneyBloc extends Bloc<MoneyEvent, GetMoneyUpdates> {
+class MoneyBloc extends Bloc<MoneyEvent, GetMoneyUsage> {
   MoneyBloc()
-      : super(GetMoneyUpdates(MoneyUsage(
+      : super(GetMoneyUsage(MoneyUsage(
             lastUpdate: DateTime.now(),
             expenses: [],
             id: FirebaseAuth.instance.currentUser!.uid))) {
-    on<SaveMoneyUpdates>((event, emit) {
+    on<SaveMoneyUsage>((event, emit) {
       event.moneyUsage.id = FirebaseAuth.instance.currentUser!.uid;
       FireDatabase.saveItemData(event.moneyUsage,
           collectionPath: 'money_usage');
-      emit(GetMoneyUpdates(event.moneyUsage));
+      emit(GetMoneyUsage(event.moneyUsage));
     });
 
-    on<GetMoneyUpdates>((event, emit) async {
+    on<GetMoneyUsage>((event, emit) async {
       MoneyUsage moneyUsage =
           MoneyUsage(lastUpdate: DateTime.now(), expenses: [], id: '');
 
@@ -42,7 +42,7 @@ class MoneyBloc extends Bloc<MoneyEvent, GetMoneyUpdates> {
         moneyUsage = MoneyUsage.fromJson(item);
       }
       moneyUsage = MoneyUsage.fromJson(item!);
-      emit(GetMoneyUpdates(moneyUsage));
+      emit(GetMoneyUsage(moneyUsage));
     });
   }
 }

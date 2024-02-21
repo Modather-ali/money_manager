@@ -14,8 +14,8 @@ class UsedMoneyChartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<MoneyBloc>(context).add(
-        GetMoneyUpdates(MoneyUsage(lastUpdate: DateTime.now(), expenses: [])));
-    return BlocBuilder<MoneyBloc, GetMoneyUpdates>(builder: (context, state) {
+        GetMoneyUsage(MoneyUsage(lastUpdate: DateTime.now(), expenses: [])));
+    return BlocBuilder<MoneyBloc, GetMoneyUsage>(builder: (context, state) {
       log(state.moneyUsage.expenses.length.toString());
       return Scaffold(
         floatingActionButton: FloatingActionButton(

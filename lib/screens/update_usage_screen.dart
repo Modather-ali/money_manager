@@ -133,7 +133,7 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
     // }
     BlocProvider.of<MoneyBloc>(context);
     BlocProvider.of<MoneyBloc>(context)
-        .add(SaveMoneyUpdates(widget.moneyUpdates));
+        .add(SaveMoneyUsage(widget.moneyUpdates));
 
     Get.offAll(() => const UsedMoneyChartScreen());
   }

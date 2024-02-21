@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 import 'package:money_manager/sign_in_screen.dart';
 import 'package:my_tools_bag/tools/logger_utils.dart';
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         title: 'Money Manager',
         theme: ThemeData(useMaterial3: true),
+        // locale: Locale(controller.appLocal),
+        localizationsDelegates: GlobalMaterialLocalizations.delegates,
+        supportedLocales: const [Locale('ar')],
         home:
             user == null ? const SignInScreen() : const UsedMoneyChartScreen(),
       ),
