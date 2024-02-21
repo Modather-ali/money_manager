@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:money_manager/screens/used_money_chart_screen.dart';
 import 'package:my_tools_bag/firebase/firebase.dart';
+
+import 'screens/money_usage_screen.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -15,7 +16,7 @@ class SignInScreen extends StatelessWidget {
             // if (result) {
             if (!context.mounted) return;
             Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => const UsedMoneyChartScreen(),
+              builder: (context) => const MoneyUsageScreen(),
             ));
             // }
           },

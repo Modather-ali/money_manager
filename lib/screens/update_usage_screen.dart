@@ -5,7 +5,7 @@ import 'package:money_manager/bloc/money_updates_bloc.dart';
 import 'package:my_tools_bag/my_tools_bag.dart';
 
 import '../models/money_usage.dart';
-import 'used_money_chart_screen.dart';
+import 'money_usage_screen.dart';
 
 class UpdateUsageScreen extends StatefulWidget {
   final MoneyUsage moneyUpdates;
@@ -135,6 +135,6 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
     BlocProvider.of<MoneyBloc>(context)
         .add(SaveMoneyUsage(widget.moneyUpdates));
 
-    Get.offAll(() => const UsedMoneyChartScreen());
+    Get.offAll(() => const MoneyUsageScreen());
   }
 }

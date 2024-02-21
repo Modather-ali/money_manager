@@ -8,7 +8,7 @@ import 'package:money_manager/sign_in_screen.dart';
 import 'package:my_tools_bag/tools/logger_utils.dart';
 
 import 'bloc/money_updates_bloc.dart';
-import 'screens/used_money_chart_screen.dart';
+import 'screens/money_usage_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,11 +32,10 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         title: 'Money Manager',
         theme: ThemeData(useMaterial3: true),
-        // locale: Locale(controller.appLocal),
+        locale: const Locale('ar'),
         localizationsDelegates: GlobalMaterialLocalizations.delegates,
         supportedLocales: const [Locale('ar')],
-        home:
-            user == null ? const SignInScreen() : const UsedMoneyChartScreen(),
+        home: user == null ? const SignInScreen() : const MoneyUsageScreen(),
       ),
     );
   }
