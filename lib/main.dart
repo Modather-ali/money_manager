@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'package:money_manager/sign_in_screen.dart';
+import 'package:money_manager/screens/sign_in_screen.dart';
 import 'package:my_tools_bag/tools/logger_utils.dart';
 
 import 'bloc/money_updates_bloc.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_tools_bag/firebase/firebase.dart';
 
-import 'screens/money_usage_screen.dart';
+import 'money_usage_screen.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
