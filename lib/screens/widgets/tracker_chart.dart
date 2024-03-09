@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import '../../models/money_usage.dart';
 
 class TrackerChart extends StatefulWidget {
-  final List<Expense> expenses;
+  final List<Transaction> transactions;
   final num target;
   const TrackerChart({
     super.key,
-    required this.expenses,
+    required this.transactions,
     required this.target,
   });
 

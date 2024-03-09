@@ -116,11 +116,12 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
         '${_updatedDate.year}-${_updatedDate.month}-${_updatedDate.day}';
     // int updateIndex = -1;
 
-    Expense update = Expense(
+    Transaction update = Transaction(
       dayId: dayId,
       date: _updatedDate,
       usedMoney: int.parse(_moneyUsage.text),
       purchase: _purchase.text,
+      type: '',
     );
 
     // updateIndex = widget.moneyUpdates.expenses
@@ -129,7 +130,7 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
     // if (updateIndex > -1) {
     //   widget.moneyUpdates.expenses[updateIndex] = update;
     // } else {
-    widget.moneyUpdates.expenses.add(update);
+    widget.moneyUpdates.transactions.add(update);
     // }
     BlocProvider.of<MoneyBloc>(context);
     BlocProvider.of<MoneyBloc>(context)

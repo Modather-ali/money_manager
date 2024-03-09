@@ -13,16 +13,12 @@ final class SaveMoneyUsage extends MoneyEvent {
 }
 
 class GetMoneyUsage extends MoneyEvent {
-  final MoneyUsage moneyUsage;
+  final MoneyUsage? moneyUsage;
   GetMoneyUsage(this.moneyUsage);
 }
 
 class MoneyBloc extends Bloc<MoneyEvent, GetMoneyUsage> {
-  MoneyBloc()
-      : super(GetMoneyUsage(MoneyUsage(
-            lastUpdate: DateTime.now(),
-            expenses: [],
-            id: FirebaseAuth.instance.currentUser!.uid))) {
+  MoneyBloc() : super(GetMoneyUsage(null)) {
     on<SaveMoneyUsage>((event, emit) {
       event.moneyUsage.id = FirebaseAuth.instance.currentUser!.uid;
       FireDatabase.saveItemData(event.moneyUsage,
@@ -32,7 +28,7 @@ class MoneyBloc extends Bloc<MoneyEvent, GetMoneyUsage> {
 
     on<GetMoneyUsage>((event, emit) async {
       MoneyUsage moneyUsage =
-          MoneyUsage(lastUpdate: DateTime.now(), expenses: [], id: '');
+          MoneyUsage(lastUpdate: DateTime.now(), transactions: [], id: '');
 
       Map<String, dynamic>? item = await FireDatabase.getItemData(
         collectionPath: 'money_usage',

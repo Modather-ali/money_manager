@@ -1,11 +1,15 @@
 {
     "id": "",
     "last_update": "2023-10-18T12:59:59",
-    "expenses": [
+    "egp_balance": 1.0,
+    "usd_balance": 1.0,
+    "usd_to_egp": 50.0,
+    "transactions": [
         {
             "day_id": "",
             "purchase": "",
             "used_money": 100,
+            "type": "",
             "date": "2023-10-18T12:59:59"
         }
     ]

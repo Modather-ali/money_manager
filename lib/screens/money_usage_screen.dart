@@ -13,37 +13,41 @@ class MoneyUsageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    BlocProvider.of<MoneyBloc>(context).add(
-        GetMoneyUsage(MoneyUsage(lastUpdate: DateTime.now(), expenses: [])));
+    BlocProvider.of<MoneyBloc>(context).add(GetMoneyUsage(
+        MoneyUsage(lastUpdate: DateTime.now(), transactions: [])));
     return BlocBuilder<MoneyBloc, GetMoneyUsage>(builder: (context, state) {
-      log(state.moneyUsage.expenses.length.toString());
+      if (state.moneyUsage == null) {
+        return const Center(child: CircularProgressIndicator());
+      }
+      log(state.moneyUsage!.transactions.length.toString());
+      MoneyUsage moneyUsage = state.moneyUsage!;
       return Scaffold(
         appBar: AppBar(title: const Text('تتبع المشتريات')),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Get.to(() => UpdateUsageScreen(
-                  moneyUpdates: state.moneyUsage,
+                  moneyUpdates: moneyUsage,
                 ));
           },
-          child: const Icon(Icons.update),
+          child: const Icon(Icons.addchart),
         ),
         body: ListView.builder(
-          itemCount: state.moneyUsage.expenses.length,
+          itemCount: moneyUsage.transactions.length,
           itemBuilder: (context, index) {
             return Card(
               child: ListTile(
-                title: Text(state.moneyUsage.expenses[index].purchase),
+                title: Text(moneyUsage.transactions[index].purchase),
                 subtitle: Row(
                   children: [
                     Text(
-                      '${state.moneyUsage.expenses[index].usedMoney} جنيه',
+                      '${moneyUsage.transactions[index].usedMoney} جنيه',
                       style: const TextStyle(
                         fontWeight: FontWeight.w700,
                       ),
                     ),
                     const SizedBox(width: 10),
                     Text(DateFormatter.formatDateAR(
-                      state.moneyUsage.expenses[index].date,
+                      moneyUsage.transactions[index].date,
                       isFull: false,
                     )),
                   ],
