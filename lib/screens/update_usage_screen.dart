@@ -21,6 +21,7 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
   final TextEditingController _purchase = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   DateTime _updatedDate = DateTime.now();
+  String _transactionType = 'expense';
   @override
   void initState() {
     _date.text = DateTime.now().toString().split(" ")[0];
@@ -31,6 +32,7 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -41,11 +43,8 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(
-                    height: 200,
+                    height: 100,
                     width: double.infinity,
-                  ),
-                  const SizedBox(
-                    height: 20,
                   ),
                   BeautyTextField(
                     fieldName: 'المشترى',
@@ -88,6 +87,27 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 20),
+                  const Text('نوع المعاملة:'),
+                  SizedBox(
+                    width: 200,
+                    height: 50,
+                    child: DropdownButton(
+                      isExpanded: true,
+                      items: const [
+                        DropdownMenuItem(
+                            value: 'expense', child: Text('نفقات')),
+                        DropdownMenuItem(
+                            value: 'deposit', child: Text('ايداع')),
+                        DropdownMenuItem(
+                            value: 'transfer', child: Text('تحويل')),
+                      ],
+                      value: _transactionType,
+                      onChanged: (value) {
+                        _transactionType = value!;
+                      },
+                    ),
+                  ),
                   const SizedBox(
                     height: 30,
                   ),
@@ -121,7 +141,7 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
       date: _updatedDate,
       usedMoney: int.parse(_moneyUsage.text),
       purchase: _purchase.text,
-      type: 'expense',
+      type: _transactionType,
     );
 
     // updateIndex = widget.moneyUpdates.expenses

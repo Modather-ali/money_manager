@@ -6,9 +6,10 @@ import 'package:get/get.dart';
 import 'package:money_manager/bloc/money_updates_bloc.dart';
 import 'package:money_manager/models/money_usage.dart';
 import 'package:money_manager/screens/update_usage_screen.dart';
-import 'package:my_tools_bag/tools/date_formatter.dart';
 
 import 'balance_screen.dart';
+import 'widgets/loading_view.dart';
+import 'widgets/transaction_widget.dart';
 
 class MoneyUsageScreen extends StatelessWidget {
   const MoneyUsageScreen({super.key});
@@ -45,43 +46,11 @@ class MoneyUsageScreen extends StatelessWidget {
         body: ListView.builder(
           itemCount: moneyUsage.transactions.length,
           itemBuilder: (context, index) {
-            return Card(
-              child: ListTile(
-                title: Text(moneyUsage.transactions[index].purchase),
-                subtitle: Row(
-                  children: [
-                    Text(
-                      '${moneyUsage.transactions[index].usedMoney} جنيه',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    Text(DateFormatter.formatDateAR(
-                      moneyUsage.transactions[index].date,
-                      isFull: false,
-                    )),
-                  ],
-                ),
-              ),
-            );
+            return TransactionWidget(
+                transaction: moneyUsage.transactions[index]);
           },
         ),
       );
     });
-  }
-}
-
-class LoadingView extends StatelessWidget {
-  const LoadingView({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        alignment: Alignment.center,
-        color: Theme.of(context).scaffoldBackgroundColor,
-        child: const CircularProgressIndicator());
   }
 }
