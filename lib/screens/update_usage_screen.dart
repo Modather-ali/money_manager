@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:money_manager/bloc/money_updates_bloc.dart';
 import 'package:my_tools_bag/my_tools_bag.dart';
 
+import '../bloc/money_updates_bloc.dart';
 import '../models/money_usage.dart';
 import 'money_usage_screen.dart';
 

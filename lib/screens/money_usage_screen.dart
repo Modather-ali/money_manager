@@ -3,11 +3,11 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:money_manager/bloc/money_updates_bloc.dart';
-import 'package:money_manager/models/money_usage.dart';
-import 'package:money_manager/screens/update_usage_screen.dart';
 
+import '../bloc/money_updates_bloc.dart';
+import '../models/money_usage.dart';
 import 'balance_screen.dart';
+import 'update_usage_screen.dart';
 import 'widgets/loading_view.dart';
 import 'widgets/transaction_widget.dart';
 

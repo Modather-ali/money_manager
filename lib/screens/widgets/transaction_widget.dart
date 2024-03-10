@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:money_manager/models/money_usage.dart';
 import 'package:my_tools_bag/tools/date_formatter.dart';
+
+import '../../models/money_usage.dart';
 
 class TransactionWidget extends StatelessWidget {
   const TransactionWidget({

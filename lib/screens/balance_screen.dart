@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:money_manager/models/money_usage.dart';
 
 import '../bloc/money_updates_bloc.dart';
+import '../models/money_usage.dart';
 import 'widgets/balance_text_field.dart';
 
 class BalanceScreen extends StatefulWidget {

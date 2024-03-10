@@ -1,14 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'package:money_manager/screens/sign_in_screen.dart';
 import 'package:my_tools_bag/tools/logger_utils.dart';
 
 import 'bloc/money_updates_bloc.dart';
 import 'screens/money_usage_screen.dart';
+import 'screens/sign_in_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +32,10 @@ class MyApp extends StatelessWidget {
       ],
       child: GetMaterialApp(
         title: 'Money Manager',
-        theme: ThemeData(useMaterial3: true),
+        theme: FlexThemeData.light(
+          useMaterial3: true,
+          scheme: FlexScheme.gold,
+        ),
         locale: const Locale('ar'),
         localizationsDelegates: GlobalMaterialLocalizations.delegates,
         supportedLocales: const [Locale('ar')],
