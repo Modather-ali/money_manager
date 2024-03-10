@@ -8,6 +8,8 @@ import 'package:money_manager/models/money_usage.dart';
 import 'package:money_manager/screens/update_usage_screen.dart';
 import 'package:my_tools_bag/tools/date_formatter.dart';
 
+import 'balance_screen.dart';
+
 class MoneyUsageScreen extends StatelessWidget {
   const MoneyUsageScreen({super.key});
 
@@ -17,16 +19,25 @@ class MoneyUsageScreen extends StatelessWidget {
         MoneyUsage(lastUpdate: DateTime.now(), transactions: [])));
     return BlocBuilder<MoneyBloc, GetMoneyUsage>(builder: (context, state) {
       if (state.moneyUsage == null) {
-        return const Center(child: CircularProgressIndicator());
+        return const LoadingView();
       }
       log(state.moneyUsage!.transactions.length.toString());
       MoneyUsage moneyUsage = state.moneyUsage!;
       return Scaffold(
-        appBar: AppBar(title: const Text('تتبع المشتريات')),
+        appBar: AppBar(
+          title: const Text('تتبع المشتريات'),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Get.to(() => BalanceScreen(moneyUsage: moneyUsage));
+                },
+                icon: const Icon(Icons.account_balance_wallet_rounded)),
+          ],
+        ),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Get.to(() => UpdateUsageScreen(
-                  moneyUpdates: moneyUsage,
+                  moneyUsage: moneyUsage,
                 ));
           },
           child: const Icon(Icons.addchart),
@@ -58,5 +69,19 @@ class MoneyUsageScreen extends StatelessWidget {
         ),
       );
     });
+  }
+}
+
+class LoadingView extends StatelessWidget {
+  const LoadingView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        alignment: Alignment.center,
+        color: Theme.of(context).scaffoldBackgroundColor,
+        child: const CircularProgressIndicator());
   }
 }

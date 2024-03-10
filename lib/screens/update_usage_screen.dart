@@ -8,8 +8,8 @@ import '../models/money_usage.dart';
 import 'money_usage_screen.dart';
 
 class UpdateUsageScreen extends StatefulWidget {
-  final MoneyUsage moneyUpdates;
-  const UpdateUsageScreen({super.key, required this.moneyUpdates});
+  final MoneyUsage moneyUsage;
+  const UpdateUsageScreen({super.key, required this.moneyUsage});
 
   @override
   State<UpdateUsageScreen> createState() => _UpdateUsageScreenState();
@@ -121,7 +121,7 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
       date: _updatedDate,
       usedMoney: int.parse(_moneyUsage.text),
       purchase: _purchase.text,
-      type: '',
+      type: 'expense',
     );
 
     // updateIndex = widget.moneyUpdates.expenses
@@ -130,11 +130,10 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
     // if (updateIndex > -1) {
     //   widget.moneyUpdates.expenses[updateIndex] = update;
     // } else {
-    widget.moneyUpdates.transactions.add(update);
+    widget.moneyUsage.transactions.add(update);
     // }
     BlocProvider.of<MoneyBloc>(context);
-    BlocProvider.of<MoneyBloc>(context)
-        .add(SaveMoneyUsage(widget.moneyUpdates));
+    BlocProvider.of<MoneyBloc>(context).add(SaveMoneyUsage(widget.moneyUsage));
 
     Get.offAll(() => const MoneyUsageScreen());
   }
