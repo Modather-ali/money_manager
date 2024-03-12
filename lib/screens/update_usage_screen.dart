@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 
 import '../bloc/money_updates_bloc.dart';
 import '../models/money_usage.dart';
-import 'beauty_text_field.dart';
 import 'money_usage_screen.dart';
+import 'widgets/beauty_text_field.dart';
 
 class UpdateUsageScreen extends StatefulWidget {
   final MoneyUsage moneyUsage;

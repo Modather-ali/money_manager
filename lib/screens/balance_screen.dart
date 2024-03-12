@@ -33,7 +33,7 @@ class _BalanceScreenState extends State<BalanceScreen> {
         padding: const EdgeInsets.all(15),
         children: [
           BalanceTextField(
-            fieldName: 'الجنيه',
+            currency: 'جنيه',
             controller: _egp,
             isEditMode: _isEditEGP,
             onEdit: () {
@@ -53,7 +53,7 @@ class _BalanceScreenState extends State<BalanceScreen> {
           ),
           const SizedBox(height: 15),
           BalanceTextField(
-            fieldName: 'الدولار',
+            currency: 'دولار',
             controller: _usd,
             isEditMode: _isEditUSD,
             onEdit: () {

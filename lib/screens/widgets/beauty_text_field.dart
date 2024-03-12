@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 class BeautyTextField extends StatelessWidget {
   const BeautyTextField({
     Key? key,
-    required this.fieldName,
+    this.fieldName = '',
     this.textInputType,
     this.textInputAction = TextInputAction.next,
     this.validator,
