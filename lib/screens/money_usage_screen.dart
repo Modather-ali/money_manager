@@ -50,7 +50,7 @@ class _MoneyUsageScreenState extends State<MoneyUsageScreen> {
 
       return Scaffold(
         appBar: AppBar(
-          title: const Text('تتبع المشتريات'),
+          title: const Text('الإدارة المالية'),
           actions: [
             IconButton(
                 onPressed: () {
