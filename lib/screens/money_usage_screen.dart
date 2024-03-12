@@ -24,6 +24,9 @@ class MoneyUsageScreen extends StatelessWidget {
       }
       log(state.moneyUsage!.transactions.length.toString());
       MoneyUsage moneyUsage = state.moneyUsage!;
+      List<Transaction> transactions =
+          moneyUsage.transactions.reversed.toList();
+
       return Scaffold(
         appBar: AppBar(
           title: const Text('تتبع المشتريات'),
@@ -44,11 +47,9 @@ class MoneyUsageScreen extends StatelessWidget {
           child: const Icon(Icons.addchart),
         ),
         body: ListView.builder(
-          itemCount: moneyUsage.transactions.length,
-          reverse: true,
+          itemCount: transactions.length,
           itemBuilder: (context, index) {
-            return TransactionWidget(
-                transaction: moneyUsage.transactions[index]);
+            return TransactionWidget(transaction: transactions[index]);
           },
         ),
       );

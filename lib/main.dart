@@ -34,9 +34,7 @@ class MyApp extends StatelessWidget {
       child: GetMaterialApp(
         title: 'Money Manager',
         theme: FlexThemeData.light(
-          useMaterial3: true,
-          scheme: FlexScheme.gold,
-        ),
+            useMaterial3: true, scheme: FlexScheme.gold, fontFamily: 'Rubik'),
         locale: const Locale('ar'),
         localizationsDelegates: GlobalMaterialLocalizations.delegates,
         supportedLocales: const [Locale('ar')],

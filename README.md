@@ -2,7 +2,7 @@
 
 A new Flutter project.
     
-    V 1.2.1
+    version: 1.2.1
     
 ## Getting Started
 
