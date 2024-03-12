@@ -4,9 +4,11 @@ import '../../models/money_usage.dart';
 import '../../tools/date_formatter.dart';
 
 class TransactionWidget extends StatelessWidget {
+  final void Function() onTap;
   const TransactionWidget({
     super.key,
     required this.transaction,
+    required this.onTap,
   });
 
   final Transaction transaction;
@@ -14,6 +16,7 @@ class TransactionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
+        onTap: onTap,
         title: Text(transaction.purchase),
         subtitle: Row(
           children: [

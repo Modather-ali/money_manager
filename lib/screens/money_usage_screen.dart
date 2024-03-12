@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -11,8 +12,29 @@ import 'update_usage_screen.dart';
 import 'widgets/loading_view.dart';
 import 'widgets/transaction_widget.dart';
 
-class MoneyUsageScreen extends StatelessWidget {
+class MoneyUsageScreen extends StatefulWidget {
   const MoneyUsageScreen({super.key});
+
+  @override
+  State<MoneyUsageScreen> createState() => _MoneyUsageScreenState();
+}
+
+class _MoneyUsageScreenState extends State<MoneyUsageScreen> {
+  final _scrollController = ScrollController();
+  @override
+  void initState() {
+    Timer.periodic(const Duration(seconds: 2), (timer) {
+      if (mounted) {
+        _scrollController.jumpTo(
+          _scrollController.position.maxScrollExtent,
+          // duration: const Duration(seconds: 1),
+          // curve: Curves.linear,
+        );
+      }
+    });
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +46,7 @@ class MoneyUsageScreen extends StatelessWidget {
       }
       log(state.moneyUsage!.transactions.length.toString());
       MoneyUsage moneyUsage = state.moneyUsage!;
-      List<Transaction> transactions =
-          moneyUsage.transactions.reversed.toList();
+      List<Transaction> transactions = moneyUsage.transactions;
 
       return Scaffold(
         appBar: AppBar(
@@ -48,8 +69,17 @@ class MoneyUsageScreen extends StatelessWidget {
         ),
         body: ListView.builder(
           itemCount: transactions.length,
+          controller: _scrollController,
           itemBuilder: (context, index) {
-            return TransactionWidget(transaction: transactions[index]);
+            return TransactionWidget(
+              transaction: transactions[index],
+              onTap: () {
+                Get.to(() => UpdateUsageScreen(
+                      moneyUsage: moneyUsage,
+                      transactionIndex: index,
+                    ));
+              },
+            );
           },
         ),
       );

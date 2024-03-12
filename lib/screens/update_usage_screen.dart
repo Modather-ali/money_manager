@@ -9,23 +9,40 @@ import 'widgets/beauty_text_field.dart';
 
 class UpdateUsageScreen extends StatefulWidget {
   final MoneyUsage moneyUsage;
-  const UpdateUsageScreen({super.key, required this.moneyUsage});
+  final int transactionIndex;
+  const UpdateUsageScreen({
+    super.key,
+    required this.moneyUsage,
+    this.transactionIndex = -1,
+  });
 
   @override
   State<UpdateUsageScreen> createState() => _UpdateUsageScreenState();
 }
 
 class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
-  final TextEditingController _moneyUsage = TextEditingController();
-  final TextEditingController _date = TextEditingController();
+  final TextEditingController _usedMoney = TextEditingController();
   final TextEditingController _purchase = TextEditingController();
+  final TextEditingController _date = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  DateTime _updatedDate = DateTime.now();
+  DateTime _transactionDate = DateTime.now();
   String _transactionType = 'expense';
+  late Transaction transaction;
+
   @override
   void initState() {
-    _date.text = DateTime.now().toString().split(" ")[0];
+    if (widget.transactionIndex > -1) {
+      transaction = widget.moneyUsage.transactions[widget.transactionIndex];
+      _usedMoney.text = transaction.usedMoney.toString();
+      _purchase.text = transaction.purchase;
 
+      _date.text = transaction.date.toString().split(" ")[0];
+
+      _transactionDate = transaction.date;
+      _transactionType = transaction.type;
+    } else {
+      _date.text = DateTime.now().toString().split(" ")[0];
+    }
     super.initState();
   }
 
@@ -52,7 +69,7 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
                   ),
                   BeautyTextField(
                     fieldName: 'المبلغ',
-                    controller: _moneyUsage,
+                    controller: _usedMoney,
                     textInputType: TextInputType.number,
                   ),
                   const SizedBox(height: 20),
@@ -68,7 +85,7 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
                         },
                       ).then((date) {
                         if (date != null) {
-                          _updatedDate = date;
+                          _transactionDate = date;
                           _date.text = date.toString().split(" ")[0];
                         }
                         setState(() {});
@@ -132,26 +149,30 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
       return;
     }
 
-    String dayId =
-        '${_updatedDate.year}-${_updatedDate.month}-${_updatedDate.day}';
-    // int updateIndex = -1;
+    if (widget.transactionIndex > -1) {
+      transaction = transaction.copyWith(
+        date: _transactionDate,
+        usedMoney: int.parse(_usedMoney.text),
+        purchase: _purchase.text,
+        type: _transactionType,
+      );
 
-    Transaction update = Transaction(
-      dayId: dayId,
-      date: _updatedDate,
-      usedMoney: int.parse(_moneyUsage.text),
-      purchase: _purchase.text,
-      type: _transactionType,
-    );
+      widget.moneyUsage.transactions[widget.transactionIndex] = transaction;
+    } else {
+      String dayId =
+          '${_transactionDate.year}-${_transactionDate.month}-${_transactionDate.day}';
 
-    // updateIndex = widget.moneyUpdates.expenses
-    //     .indexWhere((element) => element.dayId == dayId);
-    // log('$updateIndex');
-    // if (updateIndex > -1) {
-    //   widget.moneyUpdates.expenses[updateIndex] = update;
-    // } else {
-    widget.moneyUsage.transactions.add(update);
-    // }
+      transaction = Transaction(
+        dayId: dayId,
+        date: _transactionDate,
+        usedMoney: int.parse(_usedMoney.text),
+        purchase: _purchase.text,
+        type: _transactionType,
+      );
+
+      widget.moneyUsage.transactions.add(transaction);
+    }
+
     BlocProvider.of<MoneyBloc>(context);
     BlocProvider.of<MoneyBloc>(context).add(SaveMoneyUsage(widget.moneyUsage));
 
