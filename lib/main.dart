@@ -5,15 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
-import 'package:my_tools_bag/tools/logger_utils.dart';
 
 import 'bloc/money_updates_bloc.dart';
 import 'screens/money_usage_screen.dart';
 import 'screens/sign_in_screen.dart';
+import 'tools/logger_utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   runApp(const MyApp());
 }
 

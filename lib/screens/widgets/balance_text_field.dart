@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_tools_bag/my_tools_bag.dart';
+
+import '../beauty_text_field.dart';
 
 class BalanceTextField extends StatelessWidget {
   final bool isEditMode;

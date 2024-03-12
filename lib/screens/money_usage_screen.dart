@@ -45,6 +45,7 @@ class MoneyUsageScreen extends StatelessWidget {
         ),
         body: ListView.builder(
           itemCount: moneyUsage.transactions.length,
+          reverse: true,
           itemBuilder: (context, index) {
             return TransactionWidget(
                 transaction: moneyUsage.transactions[index]);

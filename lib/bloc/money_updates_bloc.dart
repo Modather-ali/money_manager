@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_tools_bag/firebase/firebase.dart';
 
+import '../firebase/firebase.dart';
 import '../models/money_usage.dart';
 
 sealed class MoneyEvent {}
