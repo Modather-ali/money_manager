@@ -1,0 +1,36 @@
+Date : 2024-03-24 03:11:18
+Directory : c:\Users\Modather\FlutterProjects\money_manager
+Total : 6 files,  -249 codes, 279 comments, 0 blanks, all 30 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| YAML     |          1 |         -1 |          1 |          0 |          0 |
+| Dart     |          5 |       -248 |        278 |          0 |         30 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                   | files      | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                      |          6 |       -249 |        279 |          0 |         30 |
+| . (Files)                                                                              |          1 |         -1 |          1 |          0 |          0 |
+| lib                                                                                    |          5 |       -248 |        278 |          0 |         30 |
+| lib\bloc                                                                               |          1 |          1 |          1 |          1 |          3 |
+| lib\screens                                                                            |          4 |       -249 |        277 |         -1 |         27 |
+| lib\screens\widgets                                                                    |          2 |       -276 |        276 |          0 |          0 |
++----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++----------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                               | language | code       | comment    | blank      | total      |
++----------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\Modather\FlutterProjects\money_manager\lib\bloc\money_updates_bloc.dart       | Dart     |          1 |          1 |          1 |          3 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\screens\money_usage_screen.dart    | Dart     |        -14 |          1 |         -2 |        -15 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\screens\update_usage_screen.dart   | Dart     |         41 |          0 |          1 |         42 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\screens\widgets\chart_screen.dart  | Dart     |       -220 |        220 |          0 |          0 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\screens\widgets\tracker_chart.dart | Dart     |        -56 |         56 |          0 |          0 |
+| c:\Users\Modather\FlutterProjects\money_manager\pubspec.yaml                           | YAML     |         -1 |          1 |          0 |          0 |
+| Total                                                                                  |          |       -249 |        279 |          0 |         30 |
++----------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
