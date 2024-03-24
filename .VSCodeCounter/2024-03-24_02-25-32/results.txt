@@ -1,0 +1,126 @@
+Date : 2024-03-24 02:25:32
+Directory : c:\Users\Modather\FlutterProjects\money_manager
+Total : 55 files,  2040 codes, 162 comments, 263 blanks, all 2465 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| Dart       |         29 |      1,495 |         62 |        192 |      1,749 |
+| JSON       |          4 |        245 |          0 |          2 |        247 |
+| XML        |         10 |        126 |         48 |         11 |        185 |
+| Groovy     |          3 |         99 |          7 |         24 |        130 |
+| YAML       |          2 |         39 |         43 |         19 |        101 |
+| Swift      |          2 |         19 |          2 |          6 |         27 |
+| Markdown   |          2 |          8 |          0 |          6 |         14 |
+| Properties |          2 |          8 |          0 |          2 |         10 |
+| C++        |          1 |          1 |          0 |          1 |          2 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                          | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                             |         55 |      2,040 |        162 |        263 |      2,465 |
+| . (Files)                                                                                                     |          3 |         44 |         43 |         23 |        110 |
+| android                                                                                                       |         14 |        256 |         53 |         35 |        344 |
+| android (Files)                                                                                               |          3 |         47 |          0 |         11 |         58 |
+| android\app                                                                                                   |         10 |        204 |         53 |         23 |        280 |
+| android\app (Files)                                                                                           |          2 |        139 |          7 |         14 |        160 |
+| android\app\src                                                                                               |          8 |         65 |         46 |          9 |        120 |
+| android\app\src\debug                                                                                         |          1 |          3 |          4 |          1 |          8 |
+| android\app\src\main                                                                                          |          6 |         59 |         38 |          7 |        104 |
+| android\app\src\main (Files)                                                                                  |          1 |         28 |          6 |          1 |         35 |
+| android\app\src\main\res                                                                                      |          5 |         31 |         32 |          6 |         69 |
+| android\app\src\main\res\drawable                                                                             |          1 |          4 |          7 |          2 |         13 |
+| android\app\src\main\res\drawable-v21                                                                         |          1 |          4 |          7 |          2 |         13 |
+| android\app\src\main\res\mipmap-anydpi-v26                                                                    |          1 |          5 |          0 |          0 |          5 |
+| android\app\src\main\res\values                                                                               |          1 |          9 |          9 |          1 |         19 |
+| android\app\src\main\res\values-night                                                                         |          1 |          9 |          9 |          1 |         19 |
+| android\app\src\profile                                                                                       |          1 |          3 |          4 |          1 |          8 |
+| android\gradle                                                                                                |          1 |          5 |          0 |          1 |          6 |
+| android\gradle\wrapper                                                                                        |          1 |          5 |          0 |          1 |          6 |
+| ios                                                                                                           |          8 |        229 |          4 |         13 |        246 |
+| ios\Runner                                                                                                    |          7 |        222 |          2 |          9 |        233 |
+| ios\Runner (Files)                                                                                            |          2 |         13 |          0 |          3 |         16 |
+| ios\RunnerTests                                                                                               |          1 |          7 |          2 |          4 |         13 |
+| ios\Runner\Assets.xcassets                                                                                    |          3 |        148 |          0 |          4 |        152 |
+| ios\Runner\Assets.xcassets\AppIcon.appiconset                                                                 |          1 |        122 |          0 |          1 |        123 |
+| ios\Runner\Assets.xcassets\LaunchImage.imageset                                                               |          2 |         26 |          0 |          3 |         29 |
+| ios\Runner\Base.lproj                                                                                         |          2 |         61 |          2 |          2 |         65 |
+| lib                                                                                                           |         29 |      1,497 |         52 |        186 |      1,735 |
+| lib (Files)                                                                                                   |          1 |         40 |          0 |          6 |         46 |
+| lib\bloc                                                                                                      |          2 |         37 |          0 |         10 |         47 |
+| lib\firebase                                                                                                  |          4 |        251 |          5 |         42 |        298 |
+| lib\models                                                                                                    |          3 |        115 |          3 |         15 |        133 |
+| lib\models (Files)                                                                                            |          2 |         99 |          3 |         15 |        117 |
+| lib\models\json                                                                                               |          1 |         16 |          0 |          0 |         16 |
+| lib\screens                                                                                                   |         13 |        857 |         39 |         82 |        978 |
+| lib\screens (Files)                                                                                           |          5 |        357 |          4 |         40 |        401 |
+| lib\screens\widgets                                                                                           |          8 |        500 |         35 |         42 |        577 |
+| lib\service                                                                                                   |          3 |        135 |          4 |         22 |        161 |
+| lib\tools                                                                                                     |          3 |         62 |          1 |          9 |         72 |
+| test                                                                                                          |          1 |         14 |         10 |          6 |         30 |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                      | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\Modather\FlutterProjects\money_manager\README.md                                                     | Markdown   |          5 |          0 |          4 |          9 |
+| c:\Users\Modather\FlutterProjects\money_manager\analysis_options.yaml                                         | YAML       |          3 |         23 |          4 |         30 |
+| c:\Users\Modather\FlutterProjects\money_manager\android\app\build.gradle                                      | Groovy     |         55 |          7 |         14 |         76 |
+| c:\Users\Modather\FlutterProjects\money_manager\android\app\google-services.json                              | JSON       |         84 |          0 |          0 |         84 |
+| c:\Users\Modather\FlutterProjects\money_manager\android\app\src\debug\AndroidManifest.xml                     | XML        |          3 |          4 |          1 |          8 |
+| c:\Users\Modather\FlutterProjects\money_manager\android\app\src\main\AndroidManifest.xml                      | XML        |         28 |          6 |          1 |         35 |
+| c:\Users\Modather\FlutterProjects\money_manager\android\app\src\main\res\drawable-v21\launch_background.xml   | XML        |          4 |          7 |          2 |         13 |
+| c:\Users\Modather\FlutterProjects\money_manager\android\app\src\main\res\drawable\launch_background.xml       | XML        |          4 |          7 |          2 |         13 |
+| c:\Users\Modather\FlutterProjects\money_manager\android\app\src\main\res\mipmap-anydpi-v26\ic_launcher.xml    | XML        |          5 |          0 |          0 |          5 |
+| c:\Users\Modather\FlutterProjects\money_manager\android\app\src\main\res\values-night\styles.xml              | XML        |          9 |          9 |          1 |         19 |
+| c:\Users\Modather\FlutterProjects\money_manager\android\app\src\main\res\values\styles.xml                    | XML        |          9 |          9 |          1 |         19 |
+| c:\Users\Modather\FlutterProjects\money_manager\android\app\src\profile\AndroidManifest.xml                   | XML        |          3 |          4 |          1 |          8 |
+| c:\Users\Modather\FlutterProjects\money_manager\android\build.gradle                                          | Groovy     |         28 |          0 |          5 |         33 |
+| c:\Users\Modather\FlutterProjects\money_manager\android\gradle.properties                                     | Properties |          3 |          0 |          1 |          4 |
+| c:\Users\Modather\FlutterProjects\money_manager\android\gradle\wrapper\gradle-wrapper.properties              | Properties |          5 |          0 |          1 |          6 |
+| c:\Users\Modather\FlutterProjects\money_manager\android\settings.gradle                                       | Groovy     |         16 |          0 |          5 |         21 |
+| c:\Users\Modather\FlutterProjects\money_manager\ios\RunnerTests\RunnerTests.swift                             | Swift      |          7 |          2 |          4 |         13 |
+| c:\Users\Modather\FlutterProjects\money_manager\ios\Runner\AppDelegate.swift                                  | Swift      |         12 |          0 |          2 |         14 |
+| c:\Users\Modather\FlutterProjects\money_manager\ios\Runner\Assets.xcassets\AppIcon.appiconset\Contents.json   | JSON       |        122 |          0 |          1 |        123 |
+| c:\Users\Modather\FlutterProjects\money_manager\ios\Runner\Assets.xcassets\LaunchImage.imageset\Contents.json | JSON       |         23 |          0 |          1 |         24 |
+| c:\Users\Modather\FlutterProjects\money_manager\ios\Runner\Assets.xcassets\LaunchImage.imageset\README.md     | Markdown   |          3 |          0 |          2 |          5 |
+| c:\Users\Modather\FlutterProjects\money_manager\ios\Runner\Base.lproj\LaunchScreen.storyboard                 | XML        |         36 |          1 |          1 |         38 |
+| c:\Users\Modather\FlutterProjects\money_manager\ios\Runner\Base.lproj\Main.storyboard                         | XML        |         25 |          1 |          1 |         27 |
+| c:\Users\Modather\FlutterProjects\money_manager\ios\Runner\Runner-Bridging-Header.h                           | C++        |          1 |          0 |          1 |          2 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\bloc\bloc.dart                                            | Dart       |          1 |          0 |          1 |          2 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\bloc\money_updates_bloc.dart                              | Dart       |         36 |          0 |          9 |         45 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\firebase\auth_enums.dart                                  | Dart       |         23 |          0 |          4 |         27 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\firebase\fire_auth.dart                                   | Dart       |         44 |          5 |         11 |         60 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\firebase\fire_database.dart                               | Dart       |        181 |          0 |         26 |        207 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\firebase\firebase.dart                                    | Dart       |          3 |          0 |          1 |          4 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\main.dart                                                 | Dart       |         40 |          0 |          6 |         46 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\models\json\money_updates.json                            | JSON       |         16 |          0 |          0 |         16 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\models\models.dart                                        | Dart       |          1 |          0 |          1 |          2 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\models\money_usage.dart                                   | Dart       |         98 |          3 |         14 |        115 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\screens\balance_screen.dart                               | Dart       |         69 |          0 |         10 |         79 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\screens\money_usage_screen.dart                           | Dart       |         78 |          2 |          9 |         89 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\screens\screens.dart                                      | Dart       |          5 |          0 |          1 |          6 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\screens\sign_in_screen.dart                               | Dart       |         39 |          2 |          4 |         45 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\screens\update_usage_screen.dart                          | Dart       |        166 |          0 |         16 |        182 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\screens\widgets\balance_text_field.dart                   | Dart       |         52 |          0 |          4 |         56 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\screens\widgets\beauty_text_field.dart                    | Dart       |         77 |          0 |          4 |         81 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\screens\widgets\chart_screen.dart                         | Dart       |        220 |          7 |         12 |        239 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\screens\widgets\loading_view.dart                         | Dart       |         13 |          0 |          3 |         16 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\screens\widgets\money_text_form_field.dart                | Dart       |         29 |          7 |          3 |         39 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\screens\widgets\tracker_chart.dart                        | Dart       |         56 |         21 |         10 |         87 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\screens\widgets\transaction_widget.dart                   | Dart       |         47 |          0 |          5 |         52 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\screens\widgets\widgets.dart                              | Dart       |          6 |          0 |          1 |          7 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\service\authentication.dart                               | Dart       |         45 |          4 |          9 |         58 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\service\cloud_firestore.dart                              | Dart       |         88 |          0 |         12 |        100 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\service\service.dart                                      | Dart       |          2 |          0 |          1 |          3 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\tools\date_formatter.dart                                 | Dart       |         52 |          0 |          5 |         57 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\tools\logger_utils.dart                                   | Dart       |          9 |          1 |          3 |         13 |
+| c:\Users\Modather\FlutterProjects\money_manager\lib\tools\tools.dart                                          | Dart       |          1 |          0 |          1 |          2 |
+| c:\Users\Modather\FlutterProjects\money_manager\pubspec.yaml                                                  | YAML       |         36 |         20 |         15 |         71 |
+| c:\Users\Modather\FlutterProjects\money_manager\test\widget_test.dart                                         | Dart       |         14 |         10 |          6 |         30 |
+| Total                                                                                                         |            |      2,040 |        162 |        263 |      2,465 |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
