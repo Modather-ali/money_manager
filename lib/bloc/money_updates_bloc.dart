@@ -21,8 +21,10 @@ class MoneyBloc extends Bloc<MoneyEvent, GetMoneyUsage> {
   MoneyBloc() : super(GetMoneyUsage(null)) {
     on<SaveMoneyUsage>((event, emit) {
       event.moneyUsage.id = FirebaseAuth.instance.currentUser!.uid;
+      event.moneyUsage.transactions.sort((a, b) => b.date.compareTo(a.date));
       FireDatabase.saveItemData(event.moneyUsage,
           collectionPath: 'money_usage');
+
       emit(GetMoneyUsage(event.moneyUsage));
     });
 
@@ -38,6 +40,7 @@ class MoneyBloc extends Bloc<MoneyEvent, GetMoneyUsage> {
         moneyUsage = MoneyUsage.fromJson(item);
       }
       moneyUsage = MoneyUsage.fromJson(item!);
+      // moneyUsage.transactions.sort((a, b) => b.date.compareTo(a.date));
       emit(GetMoneyUsage(moneyUsage));
     });
   }

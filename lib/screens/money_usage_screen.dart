@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -20,22 +19,6 @@ class MoneyUsageScreen extends StatefulWidget {
 }
 
 class _MoneyUsageScreenState extends State<MoneyUsageScreen> {
-  final _scrollController = ScrollController();
-  @override
-  void initState() {
-    Timer.periodic(const Duration(seconds: 2), (timer) {
-      if (mounted) {
-        _scrollController.jumpTo(
-          _scrollController.position.maxScrollExtent,
-          // duration: const Duration(seconds: 1),
-          // curve: Curves.linear,
-        );
-      }
-    });
-
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<MoneyBloc>(context).add(GetMoneyUsage(
@@ -69,7 +52,9 @@ class _MoneyUsageScreenState extends State<MoneyUsageScreen> {
         ),
         body: ListView.builder(
           itemCount: transactions.length,
-          controller: _scrollController,
+          // reverse: true,
+          // dragStartBehavior: DragStartBehavior.down,
+          // controller: _scrollController,
           itemBuilder: (context, index) {
             return TransactionWidget(
               transaction: transactions[index],

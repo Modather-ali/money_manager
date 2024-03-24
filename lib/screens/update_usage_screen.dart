@@ -49,7 +49,46 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        actions: [
+          if (widget.transactionIndex > -1)
+            IconButton(
+                onPressed: () {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text('حذف؟'),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              if (_transactionType == 'expense') {
+                                widget.moneyUsage.egpBalance +=
+                                    transaction.usedMoney;
+                              } else {
+                                widget.moneyUsage.egpBalance -=
+                                    transaction.usedMoney;
+                              }
+                              widget.moneyUsage.transactions
+                                  .removeAt(widget.transactionIndex);
+                              BlocProvider.of<MoneyBloc>(context)
+                                  .add(SaveMoneyUsage(widget.moneyUsage));
+
+                              Get.offAll(() => const MoneyUsageScreen());
+                            },
+                            child: const Text('نعم'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                icon: const Icon(
+                  Icons.delete,
+                  color: Colors.red,
+                ))
+        ],
+      ),
       body: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -122,12 +161,11 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
                       value: _transactionType,
                       onChanged: (value) {
                         _transactionType = value!;
+                        setState(() {});
                       },
                     ),
                   ),
-                  const SizedBox(
-                    height: 30,
-                  ),
+                  const SizedBox(height: 30),
                   SizedBox(
                     width: 150,
                     child: ElevatedButton(
@@ -172,8 +210,12 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
 
       widget.moneyUsage.transactions.add(transaction);
     }
+    if (_transactionType == 'expense') {
+      widget.moneyUsage.egpBalance -= transaction.usedMoney;
+    } else {
+      widget.moneyUsage.egpBalance += transaction.usedMoney;
+    }
 
-    BlocProvider.of<MoneyBloc>(context);
     BlocProvider.of<MoneyBloc>(context).add(SaveMoneyUsage(widget.moneyUsage));
 
     Get.offAll(() => const MoneyUsageScreen());
