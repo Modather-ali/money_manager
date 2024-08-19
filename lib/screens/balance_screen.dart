@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,6 +33,19 @@ class _BalanceScreenState extends State<BalanceScreen> {
       body: ListView(
         padding: const EdgeInsets.all(15),
         children: [
+          Card(
+            child: Container(
+              padding: const EdgeInsets.all(15),
+              alignment: Alignment.center,
+              child: Text(
+                FirebaseAuth.instance.currentUser!.email!,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ),
           BalanceTextField(
             currency: 'جنيه',
             controller: _egp,

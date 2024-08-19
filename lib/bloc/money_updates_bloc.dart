@@ -39,7 +39,6 @@ class MoneyBloc extends Bloc<MoneyEvent, GetMoneyUsage> {
       if (item != null) {
         moneyUsage = MoneyUsage.fromJson(item);
       }
-      moneyUsage = MoneyUsage.fromJson(item!);
       // moneyUsage.transactions.sort((a, b) => b.date.compareTo(a.date));
       emit(GetMoneyUsage(moneyUsage));
     });

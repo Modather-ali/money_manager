@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:money_manager/tools/logger_utils.dart';
 
 import '../bloc/money_updates_bloc.dart';
 import '../models/money_usage.dart';
@@ -23,7 +24,6 @@ class UpdateUsageScreen extends StatefulWidget {
 class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
   final TextEditingController _usedMoney = TextEditingController();
   final TextEditingController _purchase = TextEditingController();
-  final TextEditingController _date = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   DateTime _transactionDate = DateTime.now();
   String _transactionType = 'expense';
@@ -36,12 +36,8 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
       _usedMoney.text = transaction.usedMoney.toString();
       _purchase.text = transaction.purchase;
 
-      _date.text = transaction.date.toString().split(" ")[0];
-
       _transactionDate = transaction.date;
       _transactionType = transaction.type;
-    } else {
-      _date.text = DateTime.now().toString().split(" ")[0];
     }
     super.initState();
   }
@@ -113,34 +109,17 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
                   ),
                   const SizedBox(height: 20),
                   InkWell(
-                    onTap: () {
-                      showDatePicker(
-                        context: context,
-                        firstDate: DateTime(2000),
-                        lastDate: DateTime(2999),
-                        initialDate: DateTime.now(),
-                        selectableDayPredicate: (day) {
-                          return true;
-                        },
-                      ).then((date) {
-                        if (date != null) {
-                          _transactionDate = date;
-                          _date.text = date.toString().split(" ")[0];
-                        }
-                        setState(() {});
-                      });
-                    },
-                    child: SizedBox(
-                      width: 200,
-                      child: TextField(
-                        controller: _date,
-                        decoration: const InputDecoration(
-                          focusedBorder: OutlineInputBorder(),
-                          prefixIcon: Icon(Icons.date_range),
-                        ),
-                        keyboardType: TextInputType.datetime,
-                        enabled: false,
+                    onTap: _onPickDate,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText:
+                            '${_transactionDate.toString().split(" ")[1].split('.')[0]} ${_transactionDate.toString().split(" ")[0]}',
+                        hintStyle: const TextStyle(fontSize: 12),
+                        focusedBorder: const OutlineInputBorder(),
+                        prefixIcon: const Icon(Icons.date_range),
                       ),
+                      keyboardType: TextInputType.datetime,
+                      enabled: false,
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -219,5 +198,35 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
     BlocProvider.of<MoneyBloc>(context).add(SaveMoneyUsage(widget.moneyUsage));
 
     Get.offAll(() => const MoneyUsageScreen());
+  }
+
+  void _onPickDate() async {
+    await showDatePicker(
+      context: context,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2999),
+      initialDate: DateTime.now(),
+      selectableDayPredicate: (day) {
+        return true;
+      },
+    ).then((date) async {
+      if (date != null) {
+        _transactionDate = date;
+        Logger.print(date.toString());
+        await showTimePicker(
+          context: context,
+          initialTime: TimeOfDay.now(),
+        ).then((TimeOfDay? timeOfDay) {
+          if (timeOfDay != null) {
+            _transactionDate = date.copyWith(
+              hour: timeOfDay.hour,
+              minute: timeOfDay.minute,
+            );
+            Logger.print(timeOfDay);
+          }
+        });
+      }
+      setState(() {});
+    });
   }
 }
