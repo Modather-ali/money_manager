@@ -169,7 +169,7 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
     if (widget.transactionIndex > -1) {
       transaction = transaction.copyWith(
         date: _transactionDate,
-        usedMoney: int.parse(_usedMoney.text),
+        usedMoney: double.parse(_usedMoney.text),
         purchase: _purchase.text,
         type: _transactionType,
       );
@@ -182,7 +182,7 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
       transaction = Transaction(
         dayId: dayId,
         date: _transactionDate,
-        usedMoney: int.parse(_usedMoney.text),
+        usedMoney: double.parse(_usedMoney.text),
         purchase: _purchase.text,
         type: _transactionType,
       );

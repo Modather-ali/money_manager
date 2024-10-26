@@ -52,7 +52,7 @@ class _BalanceScreenState extends State<BalanceScreen> {
             isEditMode: _isEditEGP,
             onEdit: () {
               if (_isEditEGP) {
-                widget.moneyUsage.egpBalance = int.parse(_egp.text);
+                widget.moneyUsage.egpBalance = double.parse(_egp.text);
 
                 BlocProvider.of<MoneyBloc>(context);
                 BlocProvider.of<MoneyBloc>(context)
@@ -72,7 +72,7 @@ class _BalanceScreenState extends State<BalanceScreen> {
             isEditMode: _isEditUSD,
             onEdit: () {
               if (_isEditUSD) {
-                widget.moneyUsage.usdBalance = int.parse(_usd.text);
+                widget.moneyUsage.usdBalance = double.parse(_usd.text);
 
                 BlocProvider.of<MoneyBloc>(context);
                 BlocProvider.of<MoneyBloc>(context)
