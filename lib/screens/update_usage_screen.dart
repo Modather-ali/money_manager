@@ -28,10 +28,12 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   DateTime _transactionDate = DateTime.now();
   String _transactionType = 'expense';
+  String? _categoryId;
   late Transaction transaction;
-
+  late List<Category> _categories;
   @override
   void initState() {
+    _categories = widget.moneyUsage.categories;
     if (widget.transactionIndex > -1) {
       transaction = widget.moneyUsage.transactions[widget.transactionIndex];
       _usedMoney.text = transaction.usedMoney.toString();
@@ -39,6 +41,9 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
 
       _transactionDate = transaction.date;
       _transactionType = transaction.type;
+      if (transaction.categoryId.isNotEmpty) {
+        _categoryId = transaction.categoryId;
+      }
     }
     super.initState();
   }
@@ -151,6 +156,25 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
                       },
                     ),
                   ),
+                  const SizedBox(height: 10),
+                  const Text('الفئة:'),
+                  SizedBox(
+                    width: 200,
+                    height: 50,
+                    child: DropdownButton(
+                      isExpanded: true,
+                      items: [
+                        for (var category in _categories)
+                          DropdownMenuItem(
+                              value: category.id, child: Text(category.name)),
+                      ],
+                      value: _categoryId,
+                      onChanged: (value) {
+                        _categoryId = value!;
+                        setState(() {});
+                      },
+                    ),
+                  ),
                   const SizedBox(height: 30),
                   SizedBox(
                     width: 150,
@@ -179,6 +203,7 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
         usedMoney: double.parse(_usedMoney.text),
         purchase: _purchase.text,
         type: _transactionType,
+        categoryId: _categoryId,
       );
 
       widget.moneyUsage.transactions[widget.transactionIndex] = transaction;
@@ -192,14 +217,15 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
         usedMoney: double.parse(_usedMoney.text),
         purchase: _purchase.text,
         type: _transactionType,
+        categoryId: _categoryId ?? '',
       );
 
       widget.moneyUsage.transactions.add(transaction);
-    }
-    if (_transactionType == 'expense') {
-      widget.moneyUsage.egpBalance -= transaction.usedMoney;
-    } else {
-      widget.moneyUsage.egpBalance += transaction.usedMoney;
+      if (_transactionType == 'expense') {
+        widget.moneyUsage.egpBalance -= transaction.usedMoney;
+      } else {
+        widget.moneyUsage.egpBalance += transaction.usedMoney;
+      }
     }
 
     BlocProvider.of<MoneyBloc>(context).add(SaveMoneyUsage(widget.moneyUsage));

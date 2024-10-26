@@ -1,7 +1,7 @@
 name: money_manager
 description: A new Flutter project.
 publish_to: 'none' 
-version: 1.7.2+4
+version: 1.9.2+5
 
 environment:
   sdk: '>=3.3.1 <4.0.0'
