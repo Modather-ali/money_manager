@@ -15,14 +15,18 @@ class BalanceScreen extends StatefulWidget {
 }
 
 class _BalanceScreenState extends State<BalanceScreen> {
-  final TextEditingController _egp = TextEditingController();
-  final TextEditingController _usd = TextEditingController();
+  final _egp = TextEditingController();
+  final _usd = TextEditingController();
+  final _usdSavings = TextEditingController();
+
   bool _isEditEGP = false;
   bool _isEditUSD = false;
+  bool _isEditUSDSavings = false;
   @override
   void initState() {
     _egp.text = widget.moneyUsage.egpBalance.toString();
     _usd.text = widget.moneyUsage.usdBalance.toString();
+    _usdSavings.text = widget.moneyUsage.usdSavings.toString();
     super.initState();
   }
 
@@ -47,7 +51,7 @@ class _BalanceScreenState extends State<BalanceScreen> {
             ),
           ),
           BalanceTextField(
-            currency: 'جنيه',
+            currency: 'EGP',
             controller: _egp,
             isEditMode: _isEditEGP,
             onEdit: () {
@@ -67,7 +71,7 @@ class _BalanceScreenState extends State<BalanceScreen> {
           ),
           const SizedBox(height: 15),
           BalanceTextField(
-            currency: 'دولار',
+            currency: 'USD',
             controller: _usd,
             isEditMode: _isEditUSD,
             onEdit: () {
@@ -80,6 +84,27 @@ class _BalanceScreenState extends State<BalanceScreen> {
                 _isEditUSD = false;
               } else {
                 _isEditUSD = true;
+              }
+
+              setState(() {});
+            },
+          ),
+          //------------------------------
+          const SizedBox(height: 15),
+          BalanceTextField(
+            currency: 'المدخرات usd',
+            controller: _usdSavings,
+            isEditMode: _isEditUSDSavings,
+            onEdit: () {
+              if (_isEditUSDSavings) {
+                widget.moneyUsage.usdSavings = double.parse(_usdSavings.text);
+
+                BlocProvider.of<MoneyBloc>(context);
+                BlocProvider.of<MoneyBloc>(context)
+                    .add(SaveMoneyUsage(widget.moneyUsage));
+                _isEditUSDSavings = false;
+              } else {
+                _isEditUSDSavings = true;
               }
 
               setState(() {});

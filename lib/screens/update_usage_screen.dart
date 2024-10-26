@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart' hide Transition;
 import 'package:get/get.dart';
 import 'package:money_manager/tools/logger_utils.dart';
 
 import '../bloc/money_updates_bloc.dart';
 import '../models/money_usage.dart';
+import 'categories_screen.dart';
 import 'money_usage_screen.dart';
 import 'widgets/beauty_text_field.dart';
 
@@ -47,6 +48,12 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
     return Scaffold(
       appBar: AppBar(
         actions: [
+          IconButton(
+              onPressed: () {
+                Get.to(() => const CategoriesScreen(),
+                    transition: Transition.upToDown);
+              },
+              icon: const Icon(Icons.category)),
           if (widget.transactionIndex > -1)
             IconButton(
                 onPressed: () {
