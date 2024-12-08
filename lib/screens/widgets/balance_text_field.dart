@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 import 'beauty_text_field.dart';
 
@@ -42,7 +41,7 @@ class BalanceTextField extends StatelessWidget {
       child: BeautyTextField(
         fieldName: currency,
         controller: controller,
-        inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+        // inputFormatters: [FilteringTextInputFormatter.allow(Pattern)],
         textInputType: TextInputType.number,
         textDirection: TextDirection.ltr,
         suffixIcon: IconButton(

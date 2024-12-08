@@ -73,6 +73,8 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
                               if (_transactionType == 'expense') {
                                 widget.moneyUsage.egpBalance +=
                                     transaction.usedMoney;
+                                widget.moneyUsage.budget +=
+                                    transaction.usedMoney;
                               } else {
                                 widget.moneyUsage.egpBalance -=
                                     transaction.usedMoney;
@@ -223,6 +225,7 @@ class _UpdateUsageScreenState extends State<UpdateUsageScreen> {
       widget.moneyUsage.transactions.add(transaction);
       if (_transactionType == 'expense') {
         widget.moneyUsage.egpBalance -= transaction.usedMoney;
+        widget.moneyUsage.budget -= transaction.usedMoney;
       } else {
         widget.moneyUsage.egpBalance += transaction.usedMoney;
       }

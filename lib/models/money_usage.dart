@@ -62,7 +62,7 @@ class MoneyUsage {
         usdBalance: json["usd_balance"]?.toDouble(),
         usdSavings: json["usd_savings"]?.toDouble(),
         usdToEgp: json["usd_to_egp"]?.toDouble(),
-        budget: json["budget"] ?? 0,
+        budget: json["budget"]?.toDouble(),
         categories: List<Category>.from(
             json["categories"].map((x) => Category.fromJson(x))),
         transactions: List<Transaction>.from(
