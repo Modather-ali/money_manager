@@ -1,0 +1,12 @@
+"filename", "language", "Markdown", "Dart", "JSON", "comment", "blank", "total"
+"c:\Users\Modather\FlutterProjects\money_manager\README.md", "Markdown", 8, 0, 0, 0, 5, 13
+"c:\Users\Modather\FlutterProjects\money_manager\lib\bloc\money_updates_bloc.dart", "Dart", 0, -1, 0, 0, 0, -1
+"c:\Users\Modather\FlutterProjects\money_manager\lib\models\json\category.json", "JSON", 0, 0, 0, 0, 1, 1
+"c:\Users\Modather\FlutterProjects\money_manager\lib\models\json\money_updates.json", "JSON", 0, 0, 8, 0, 0, 8
+"c:\Users\Modather\FlutterProjects\money_manager\lib\models\money_usage.dart", "Dart", 0, 42, 0, 0, 5, 47
+"c:\Users\Modather\FlutterProjects\money_manager\lib\screens\balance_screen.dart", "Dart", 0, 35, 0, 1, 3, 39
+"c:\Users\Modather\FlutterProjects\money_manager\lib\screens\categories_screen.dart", "Dart", 0, 62, 0, 0, 7, 69
+"c:\Users\Modather\FlutterProjects\money_manager\lib\screens\update_usage_screen.dart", "Dart", 0, 43, 0, 0, -1, 42
+"c:\Users\Modather\FlutterProjects\money_manager\lib\screens\widgets\category_widget.dart", "Dart", 0, 20, 0, 0, 3, 23
+"c:\Users\Modather\FlutterProjects\money_manager\lib\screens\widgets\edit_category_sheet.dart", "Dart", 0, 80, 0, 0, 8, 88
+"Total", "-", 8, 281, 8, 1, 31, 329

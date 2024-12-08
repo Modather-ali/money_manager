@@ -5,6 +5,7 @@
     "usd_balance": 1.1,
     "usd_savings": 1.1,
     "usd_to_egp": 50.1,
+    "budget": 50.1,
     "categories": [
         {
             "id": "",

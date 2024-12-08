@@ -16,6 +16,7 @@ class MoneyUsage {
   double usdBalance;
   double usdSavings;
   double usdToEgp;
+  double budget;
   List<Category> categories;
   List<Transaction> transactions;
 
@@ -26,6 +27,7 @@ class MoneyUsage {
     this.usdBalance = 0,
     this.usdSavings = 0,
     this.usdToEgp = 0,
+    this.budget = 0,
     this.categories = const [],
     this.transactions = const [],
   });
@@ -37,6 +39,7 @@ class MoneyUsage {
     double? usdBalance,
     double? usdSavings,
     double? usdToEgp,
+    double? budget,
     List<Category>? categories,
     List<Transaction>? transactions,
   }) =>
@@ -47,6 +50,7 @@ class MoneyUsage {
         usdBalance: usdBalance ?? this.usdBalance,
         usdSavings: usdSavings ?? this.usdSavings,
         usdToEgp: usdToEgp ?? this.usdToEgp,
+        budget: budget ?? this.budget,
         categories: categories ?? this.categories,
         transactions: transactions ?? this.transactions,
       );
@@ -56,12 +60,11 @@ class MoneyUsage {
         lastUpdate: DateTime.parse(json["last_update"]),
         egpBalance: json["egp_balance"]?.toDouble(),
         usdBalance: json["usd_balance"]?.toDouble(),
-        usdSavings: json["usd_savings"] ?? 0,
+        usdSavings: json["usd_savings"]?.toDouble(),
         usdToEgp: json["usd_to_egp"]?.toDouble(),
-        categories: json["categories"] == null
-            ? []
-            : List<Category>.from(
-                json["categories"].map((x) => Category.fromJson(x))),
+        budget: json["budget"] ?? 0,
+        categories: List<Category>.from(
+            json["categories"].map((x) => Category.fromJson(x))),
         transactions: List<Transaction>.from(
             json["transactions"].map((x) => Transaction.fromJson(x))),
       );
@@ -73,6 +76,7 @@ class MoneyUsage {
         "usd_balance": usdBalance,
         "usd_savings": usdSavings,
         "usd_to_egp": usdToEgp,
+        "budget": budget,
         "categories": List<dynamic>.from(categories.map((x) => x.toJson())),
         "transactions": List<dynamic>.from(transactions.map((x) => x.toJson())),
       };
@@ -117,7 +121,7 @@ class Transaction {
 
   Transaction({
     required this.dayId,
-    this.categoryId = '',
+    required this.categoryId,
     required this.purchase,
     required this.usedMoney,
     required this.type,
@@ -143,7 +147,7 @@ class Transaction {
 
   factory Transaction.fromJson(Map<String, dynamic> json) => Transaction(
         dayId: json["day_id"],
-        categoryId: json["category_id"] ?? '',
+        categoryId: json["category_id"],
         purchase: json["purchase"],
         usedMoney: json["used_money"]?.toDouble(),
         type: json["type"],
